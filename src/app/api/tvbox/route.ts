@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const format = searchParams.get('format') || 'json'; // 支持json和base64格式
-    const adult = searchParams.get('adult') === '1'; // 是否包含成人源，默认不包含
+    const adult = searchParams.get('adult') === '1' || searchParams.get('adult') === 'true'; // 是否包含成人源，默认不包含
     const host = request.headers.get('host') || 'localhost:3000';
     const protocol = request.headers.get('x-forwarded-proto') || 'http';
     const baseUrl = `${protocol}://${host}`;
